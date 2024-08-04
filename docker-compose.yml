@@ -2,7 +2,7 @@ version: '3'
 
 services:
   database:
-    container_name: pskinme_db
+    container_name: flask_db
     build: ./database
     expose:
       - "5432" 
@@ -17,7 +17,7 @@ services:
       - DATABASE_HOST=localhost
 
   app:
-    container_name: pskinme_app
+    container_name: flask_app
     build: ./app
     expose:
       - "3031"
@@ -28,7 +28,7 @@ services:
     command: uwsgi --ini /var/www/app/config/uwsgi.ini
 
   nginx:
-    container_name: pakinme_nginx
+    container_name: flask_nginx
     build: ./nginx
     restart: always
     volumes:
