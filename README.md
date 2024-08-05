@@ -2,8 +2,6 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
 
-
-![psql_kinme](app/static/psql_kinme_final.png)
 <img src="app/static/psql_kinme_final.png" width="30%">
 
 
