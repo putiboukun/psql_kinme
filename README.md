@@ -3,54 +3,24 @@
 ![kinme](app/static/psql_kinme_final.png)
 
 
-kinme_rev is a customized version of kinme(https://github.com/Mishima-syk/kinme).
+psql_kinmeは kinme(https://github.com/Mishima-syk/kinme)のカスタマイズバージョンです。
+主に以下の変更を加えています。
 
-Major changes
-1. Corresponding changes in package specifications.
-2. Displayed images are now copied directly from SVG in WF instead of converted PNG (to prevent Japanese characters from being garbled).
-3. Set a limit on the width of images displayed on the WF detail screen (to support Modern UI images).
-4. improve security for python.app
-
-It might be better to work with nginx and WSGI, but not tested.
+1.dockerコンテナ化
+2.nginx - uwsgi - flask と連携する仕様へ変更
+3.kinmeの細かい仕様変更
+4.kinmeで使用するDBをSQliteからPostgreSQLへ変更
 
 
-## Setup
+dockerを使用可能な環境下において
 
-Install modules
+    docker compose up
+    
+又は
 
-    conda install -c conda-forge flask-sqlalchemy flask-login flask-wtf markdown
+    docker compose up -d #バッグラウンドで動作
 
-or
-
-    pip install flask-sqlalchemy flask-login flask-wtf markdown
-
-
-clone or download this repository
-
-setup database
-
-    python refreshdb.py
-
-launch flask server
-
-    set FLASK_APP=app.py
-    flask run
-or
-
-    python app.py
-
-launch flask server(background)
-
-    python app.py &
-
-or for windows
-
-    pythonw app.pyw 
-
-It might be better to work with uWSGI.(Set up procedure are Omitted.)
-
-    uwsgi uwsgi.ini
-
+で使用可能となります。
 
 ## Codespace
 
