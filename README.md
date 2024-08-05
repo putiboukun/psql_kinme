@@ -1,3 +1,71 @@
+# kinme_rev
+
+![kinme](app/images/kinme.png)
+
+
+kinme_rev is a customized version of kinme(https://github.com/Mishima-syk/kinme).
+
+Major changes
+1. Corresponding changes in package specifications.
+2. Displayed images are now copied directly from SVG in WF instead of converted PNG (to prevent Japanese characters from being garbled).
+3. Set a limit on the width of images displayed on the WF detail screen (to support Modern UI images).
+4. improve security for python.app
+
+It might be better to work with nginx and WSGI, but not tested.
+
+
+## Setup
+
+Install modules
+
+    conda install -c conda-forge flask-sqlalchemy flask-login flask-wtf markdown
+
+or
+
+    pip install flask-sqlalchemy flask-login flask-wtf markdown
+
+
+clone or download this repository
+
+setup database
+
+    python refreshdb.py
+
+launch flask server
+
+    set FLASK_APP=app.py
+    flask run
+or
+
+    python app.py
+
+launch flask server(background)
+
+    python app.py &
+
+or for windows
+
+    pythonw app.pyw 
+
+It might be better to work with uWSGI.(Set up procedure are Omitted.)
+
+    uwsgi uwsgi.ini
+
+
+## Codespace
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=744758159&skip_quickstart=true)
+
+
+
+
+
+
+
+
+
+
+
 # flask_example
 
 databaseディレクトリにdataディレクトリを作成します。
