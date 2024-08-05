@@ -22,7 +22,7 @@ dockerを使用可能な環境下において
     docker compose up -d #バッグラウンドで動作
 
 した後に
-http://hostip:8080/　<br>
+http://hostip:8080/<br>
 へアクセスすることで使用可能となります。<br>
 なお、nginxの設定上uploadできるworkflowの容量は50mbまでとなります。
 
