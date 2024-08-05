@@ -11,9 +11,9 @@ services:
       - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./database/data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=kinme
-      - POSTGRES_PASSWORD=kinmekinme
-      - POSTGRES-DATABASE=kinme
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES-DATABASE=postgres
       - DATABASE_HOST=localhost
 
   app:
@@ -25,11 +25,6 @@ services:
       - ./app:/var/www/app
     depends_on:
       - database
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES-DATABASE=postgres
-      - DATABASE_HOST=flask_DB
     command: uwsgi --ini /var/www/app/config/uwsgi.ini
    
 
