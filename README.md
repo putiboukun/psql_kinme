@@ -6,7 +6,7 @@
 psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズバージョンです。<br>
 以下の変更を加えています。
 
-1.dockerコンテナ化<br>
+1.Dockerコンテナ化<br>
 2.nginx - uwsgi - flask と連携する仕様へ変更<br>
 3.kinmeで使用するDBをSQliteからPostgreSQLへ変更<br>
 4.その他kinmeの細かい仕様を@obito_od好みに変更<br>
