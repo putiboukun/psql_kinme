@@ -24,20 +24,12 @@ dockerを使用可能な環境下において
 
 ## Codespace
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=744758159&skip_quickstart=true)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
 
 
 
 
-
-
-
-
-
-
-
-
-##ご参考: docker composeを使った場合のコマンド一覧
+## ご参考: docker composeを使った場合のコマンド一覧
 
 ```bash
 # イメージ作成
