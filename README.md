@@ -35,6 +35,11 @@ http://nginxが起動しているホストip:8080/<br>
 見かけ上は一応問題なく動いてはいますがきっと様々な不具合が潜んでいるんだろうなぁ。。。
 
 
+次回以降検討予定
+uWSGIからgnicormに変更<br>
+https://qiita.com/arata-honda/items/e22c9df83df8ee0e9c4c<br>
+パスワードのハッシュ化<br>
+postgreSQLへの接続の隠匿化
 
 
 
