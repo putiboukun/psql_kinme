@@ -32,7 +32,7 @@ http://nginxが起動しているホストip:8080/<br>
 現状動作確認はGitHub Codespacesのみで行っています。<br>
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
 <br>
-見かけ上は一応問題なく動いてはいますがきっと色々問題が潜んでいると思います。。。
+見かけ上は一応問題なく動いてはいますがきっと様々な不具合が潜んでいるんだろうなぁ。。。
 
 
 
