@@ -3,14 +3,13 @@
 ![kinme](app/static/psql_kinme_final.png)
 
 
-psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )<br>　
-のカスタマイズバージョンです。<br>
-主に以下の変更を加えています。
+psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズバージョンです。<br>
+以下の変更を加えています。
 
-1.dockerコンテナ化
-2.nginx - uwsgi - flask と連携する仕様へ変更
-3.kinmeの細かい仕様変更
-4.kinmeで使用するDBをSQliteからPostgreSQLへ変更
+1.dockerコンテナ化<br>
+2.nginx - uwsgi - flask と連携する仕様へ変更<br>
+3.kinmeの細かい仕様変更<br>
+4.kinmeで使用するDBをSQliteからPostgreSQLへ変更<br>
 
 
 dockerを使用可能な環境下において
@@ -37,12 +36,8 @@ dockerを使用可能な環境下において
 
 
 
-# flask_example
 
-databaseディレクトリにdataディレクトリを作成します。
-https://qiita.com/yoshi-kin/items/c5a2a4ddb45adfd00fce
-
-## docker composeを使った場合のコマンド一覧
+##ご参考: docker composeを使った場合のコマンド一覧
 
 ```bash
 # イメージ作成
