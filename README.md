@@ -27,17 +27,11 @@ dockerを使用可能な環境下において
 ## ご参考: docker composeを使った場合のコマンド一覧
 
 ```bash
-# イメージ作成
-docker compose build --no-cache
-
 # コンテナ起動
 docker compose up
 
 # バックグラウンドでコンテナ起動
 docker compose up -d
-
-# イメージ作成＋コンテナ起動
-docker compose up -d --build
 
 # イメージ一覧
 docker images
@@ -50,9 +44,6 @@ docker ps -a
 
 # ネットワーク一覧
 docker network ls
-
-# ボリューム一覧
-docker volume ls
 
 # 指定したID/名前のコンテナの中に入る
 docker exec -it {コンテナID/名} bash
