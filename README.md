@@ -22,7 +22,7 @@ dockerを使用可能な環境下において
 した後に
 http://nginxが起動しているホストip:8080/<br>
 へアクセスすることで使用可能となります。<br>
-なお、nginxの設定上uploadできるworkflowの容量は50mbまでとなります。
+なお、nginxの設定上uploadできるworkflowの容量は50MBまでとなります。
 
 現状動作確認はGitHub Codespacesのみで行っています。<br>
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
