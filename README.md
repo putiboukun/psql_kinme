@@ -1,6 +1,6 @@
-# kinme_rev
+# psql_kinme
 
-![kinme](app/images/kinme.png)
+![kinme](app/static/psql_kinme_final.png)
 
 
 kinme_rev is a customized version of kinme(https://github.com/Mishima-syk/kinme).
