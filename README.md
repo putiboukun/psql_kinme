@@ -1,6 +1,9 @@
 # psql_kinme
 
-![kinme](app/static/psql_kinme_final.png　width="50%")
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
+
+
+![psql_kinme](app/static/psql_kinme_final.png)
 
 
 psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズバージョンです。<br>
@@ -21,13 +24,6 @@ dockerを使用可能な環境下において
     docker compose up -d #バッグラウンドで動作
 
 で使用可能となります。
-
-## Codespace
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
-
-
-
 
 ## ご参考: docker composeを使った場合のコマンド一覧
 
