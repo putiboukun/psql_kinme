@@ -15,7 +15,6 @@
   </div>
   <div class="col-md-10 offset-md-1">
         <form action="{{url_for('edit_workflow', workflow_id=workflow.id)}}" method="POST" enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
         <table class="table">
           <tr>
             <th>workflow name</th><td><input class="form-control" id="name" name="name" value="{{workflow.name}}"></td>
