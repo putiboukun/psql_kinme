@@ -3,7 +3,7 @@
 ![kinme](app/static/psql_kinme_final.png)
 
 
-psql_kinmeは kinme(https://github.com/Mishima-syk/kinme)　<br>　
+psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )<br>　
 のカスタマイズバージョンです。<br>
 主に以下の変更を加えています。
 
