@@ -25,22 +25,8 @@ md = markdown.Markdown()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "kinme"
-
-# 環境変数から接続情報を読み込む
-db_user = os.environ.get('POSTGRES_USER')
-db_password = os.environ.get('POSTGRES_PASSWORD')
-db_name = os.environ.get('POSTGRES-DATABASE')
-db_host = os.environ.get('DATABASE_HOST')
-
-# SQLAlchemy用のデータベースURIを構築
-database_uri = f"postgresql://{db_user}:{db_password}@{db_host}/{db_name}"
-
-# FlaskアプリケーションにSQLAlchemy設定を追加
-app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# SQLAlchemyインスタンスを初期化
-db = SQLAlchemy(app)
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kinme:kinmekinme@flask_db:5432/kinme'
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
