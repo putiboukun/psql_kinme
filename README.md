@@ -11,6 +11,7 @@ psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズ
 3.kinmeで使用するDBをSQLiteからPostgreSQLへ変更<br>
 4.その他kinmeの細かい仕様を@obito_od好みに変更<br>
 
+ソースをダウンロード後<br>
 dockerを使用可能な環境下において
 
     docker compose up
