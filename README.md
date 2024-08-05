@@ -29,7 +29,7 @@ http://nginxが起動しているホストip:8080/<br>
 およびpostgreSQLの接続情報の保護等は出来ておりません。<br>
 (今後の課題)
 
-なお、現状動作確認はGitHub Codespacesのみで行っています。<br>
+現状動作確認はGitHub Codespacesのみで行っています。<br>
 とりあえず動いているところを見るのであれば
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
 をクリックして環境を作ってあげるのが確実です。
