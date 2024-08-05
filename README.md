@@ -1,6 +1,6 @@
 # psql_kinme
 
-![kinme](app/static/psql_kinme_final.png)
+![kinme](app/static/psql_kinme_final.png　width="50%")
 
 
 psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズバージョンです。<br>
