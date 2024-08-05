@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from flask import Flask, request, redirect, render_template, flash, url_for, session, abort
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from model import db, Workflow, Tag, Node, User, workflows_nodes, workflows_tags
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -224,17 +227,20 @@ def register():
         return render_template("register.html", form=form)
     elif request.method == "POST":
         if form.validate_on_submit():
-            user = User(request.form.get('username'), request.form.get('password'))
+            hashed_password = generate_password_hash(request.form.get('password'))
+            user = User(name=request.form.get('username'), password=hashed_password)
             db.session.add(user)
             db.session.commit()
             return redirect("/")
+    flash_errors(form)
+    return render_template("register.html", form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm(request.form)
     if form.validate_on_submit():
         user = User.query.filter_by(name=form.username.data).first()
-        if user.password == form.password.data:
+        if user and check_password_hash(user.password, form.password.data):
             login_user(user)
             next_url = request.form.get('next')
             if next_url:
@@ -242,7 +248,7 @@ def login():
             else:
                 return redirect('/')
         else:
-            print('Login failed.')
+            flash('Login failed. Check your username and password.')
     return render_template("login.html", form=form, next=request.args.get('next', ""))
 
 @app.route("/logout")
