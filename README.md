@@ -4,6 +4,7 @@
 
 
 ![psql_kinme](app/static/psql_kinme_final.png)
+<img src="app/static/psql_kinme_final.png" width="30%">
 
 
 psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズバージョンです。<br>
