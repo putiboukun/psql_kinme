@@ -1,7 +1,5 @@
 # psql_kinme
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
-
 <img src="app/static/psql_kinme_final.png" width="30%">
 
 
@@ -30,6 +28,12 @@ http://hostip:8080/<br>
 また、現状でセキュリティ面については特に考慮できておらず、ユーザーパスワードのハッシュ化、<br>
 およびpostgreSQLの接続情報の保護等は出来ておりません。<br>
 (今後の課題)
+
+ちょっと試してみたい、という方は
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
+のボタンをクリック!
+
+
 
 
 ## ご参考: docker composeを使った場合のコマンド一覧
