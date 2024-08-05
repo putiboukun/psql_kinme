@@ -24,15 +24,16 @@ http://nginxが起動しているホストip:8080/<br>
 へアクセスすることで使用可能となります。<br>
 なお、nginxの設定上uploadできるworkflowの容量は50mbまでとなります。
 
-
-また、現状でセキュリティ面については特に考慮できておらず、ユーザーパスワードのハッシュ化、<br>
-およびpostgreSQLの接続情報の保護等は出来ておりません。<br>
-(今後の課題)
-
 現状動作確認はGitHub Codespacesのみで行っています。<br>
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
 <br>
 見かけ上は一応問題なく動いてはいますがきっと様々な不具合が潜んでいるんだろうなぁ。。。
+
+
+## 次回以降検討予定
+済：パスワードのハッシュ化<br>
+postgresql接続情報ハードコーディング問題について
+
 
 
 
