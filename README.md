@@ -7,8 +7,8 @@ psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズ
 以下の変更を加えています。
 
 1.Dockerコンテナ化<br>
-2.nginx - uwsgi - flask と連携する仕様へ変更<br>
-3.kinmeで使用するDBをSQliteからPostgreSQLへ変更<br>
+2.nginx - uwsgi - flask と連携させる仕様へ変更<br>
+3.kinmeで使用するDBをSQLiteからPostgreSQLへ変更<br>
 4.その他kinmeの細かい仕様を@obito_od好みに変更<br>
 
 dockerを使用可能な環境下において
@@ -30,9 +30,9 @@ http://nginxが起動しているホストip:8080/<br>
 (今後の課題)
 
 現状動作確認はGitHub Codespacesのみで行っています。<br>
-とりあえず動いているところを見るのであれば
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
-をクリックして環境を作ってあげるのが確実です。
+<br>
+見かけ上は一応問題なく動いてはいますがきっと色々問題が潜んでいると思います。。。
 
 
 
