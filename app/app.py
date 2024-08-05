@@ -26,7 +26,7 @@ md = markdown.Markdown()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "kinme"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kinme:kinmekinme@flask_db:5432/kinme'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@flask_db:5432/postgres'
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
