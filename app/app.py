@@ -218,6 +218,21 @@ def delete_workflow(workflow_id):
         db.session.commit()
         return redirect("/")
 
+#@app.route('/register', methods=['GET', 'POST'])
+#def register():
+#    form = RegisterForm(request.form)
+#    if request.method == "GET":
+#        return render_template("register.html", form=form)
+#    elif request.method == "POST":
+#        if form.validate_on_submit():
+#            hashed_password = generate_password_hash(request.form.get('password'))
+#            user = User(name=request.form.get('username'), password=hashed_password)
+#            db.session.add(user)
+#            db.session.commit()
+#            return redirect("/")
+#    flash_errors(form)
+#    return render_template("register.html", form=form)
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm(request.form)
@@ -225,13 +240,21 @@ def register():
         return render_template("register.html", form=form)
     elif request.method == "POST":
         if form.validate_on_submit():
-            hashed_password = generate_password_hash(request.form.get('password'))
-            user = User(name=request.form.get('username'), password=hashed_password)
+            # ユーザー名の重複チェック
+            existing_user = User.query.filter_by(name=form.username.data).first()
+            if existing_user:
+                flash('このユーザー名は既に使用されています。別のユーザー名を選択してください。')
+                return render_template("register.html", form=form)
+            
+            hashed_password = generate_password_hash(form.password.data)
+            user = User(name=form.username.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
-            return redirect("/")
-    flash_errors(form)
-    return render_template("register.html", form=form)
+            flash('ユーザー登録が完了しました。ログインしてください。')
+            return redirect(url_for('login'))
+        
+        flash_errors(form)
+        return render_template("register.html", form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
