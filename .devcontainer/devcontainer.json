@@ -1,7 +1,0 @@
-{
-  "name": "Project with Docker Compose",
-  "dockerComposeFile": ["../docker-compose.yml"],
-  "service": "app",
-  "workspaceFolder": "/workspace",
-  "postCreateCommand": "docker-compose up -d"
-}
