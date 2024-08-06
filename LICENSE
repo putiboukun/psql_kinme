@@ -35,11 +35,6 @@ This software is a modified version of kinme (https://github.com/Mishima-syk/kin
 
 This project uses the following open source libraries:
 
-## Flask
-Copyright 2010 Pallets
-License: BSD 3-Clause License
-https://github.com/pallets/flask/blob/main/LICENSE.rst
-
 ## uWSGI
 Copyright (C) 2002-2024 Roberto De Ioris et al.
 License: GNU General Public License v2.0
