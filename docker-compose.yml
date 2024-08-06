@@ -17,6 +17,7 @@ services:
       - DATABASE_HOST=localhost
     #ports:
     #  - "5433:5432"
+    restart: always
 
   app:
     container_name: flask_app
@@ -28,6 +29,7 @@ services:
     depends_on:
       - database
     command: uwsgi --ini /var/www/app/config/uwsgi.ini
+    restart: always
    
 
   nginx:
@@ -40,3 +42,4 @@ services:
       - app
     ports:
       - "8080:80"
+    restart: always
