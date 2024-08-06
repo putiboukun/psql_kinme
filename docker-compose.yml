@@ -35,7 +35,6 @@ services:
   nginx:
     container_name: flask_nginx
     build: ./nginx
-    restart: always
     volumes:
       - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
