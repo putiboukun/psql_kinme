@@ -1,0 +1,5 @@
+{
+  "name": "psql_kinme codespaces set up",
+  "dockerComposeFile": "../docker-compose.yml",
+  "postCreateCommand": "docker-compose up -d"
+}
