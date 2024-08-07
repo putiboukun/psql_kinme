@@ -12,7 +12,7 @@ psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズ
 4.その他kinmeの細かい仕様を@obito_od好みに変更<br>
 
 ソースをダウンロード後<br>
-Dockerを使用可能な状態で
+Docker、およびDocker-composeを使用可能な状態で
 
     docker compose up
     
