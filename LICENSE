@@ -31,20 +31,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 This software is a modified version of kinme (https://github.com/Mishima-syk/kinme).
 
-# Third-Party Licenses
-
-This project uses the following open source libraries:
-
-## uWSGI
-Copyright (C) 2002-2024 Roberto De Ioris et al.
-License: GNU General Public License v2.0
-https://github.com/unbit/uwsgi/blob/master/LICENSE
-
-## Nginx
-Copyright (C) 2002-2024 Igor Sysoev
-Copyright (C) 2011-2024 Nginx, Inc.
-License: BSD 2-Clause License
-https://nginx.org/LICENSE
 
 ## Docker
 Copyright 2013-2024 Docker, Inc.
