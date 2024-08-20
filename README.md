@@ -21,7 +21,7 @@ Docker、およびDocker-composeを使用可能な状態で
     docker compose up -d #バッグラウンドで動作
 
 した後に
-http://nginxが起動しているホストip:8080/<br>
+http://ホストip:8080/<br>
 へアクセスすることで使用可能となります。<br>
 なお、uploadできるworkflowの容量は50MBまでとなります。
 
