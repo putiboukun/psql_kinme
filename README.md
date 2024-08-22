@@ -16,7 +16,7 @@ psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズ
 　　→文言少しだけ変更<br>
     　　　　　　　　　　　等
 
-ソースをダウンロード後<br>
+ソースをダウンロード、展開をしてそのディレクトリ内に移動後<br>
 Docker、およびDocker-composeを使用可能な状態で
 
     docker compose up
@@ -25,8 +25,8 @@ Docker、およびDocker-composeを使用可能な状態で
 
     docker compose up -d #バッグラウンドで動作
 
-した後に
-http://ホストip:8080/<br>
+することで環境を構築します。<br>
+3つのコンテナが立ち上がったら　http://ホストip:8080/<br>
 へアクセスすることで使用可能となります。<br>
 なお、uploadできるworkflowの容量は50MBまでとなります。
 
