@@ -9,7 +9,8 @@ psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズ
 1.Docker化<br>
 2.nginx - uwsgi - flask と連携させる仕様へ変更<br>
 3.kinmeで使用するDBをSQLiteからPostgreSQLへ変更<br>
-4.その他kinmeの細かい仕様を@obito_od好みに変更<br>
+4.その他kinmeの細かい仕様を変更<br>
+　　→使用するパッケージの関数名変更対応
 　　→画像の保存方法を変更<br>
 　　→ユーザーIDの重複登録を不可能に<br>
 　　→アイコン類変更<br>
