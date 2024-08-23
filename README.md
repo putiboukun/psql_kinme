@@ -29,7 +29,15 @@ Docker、およびDocker-composeを使用可能な状態で
 することで環境を構築します。<br>
 3つのコンテナが立ち上がったら　http://ホストip:8080/<br>
 へアクセスすることで使用可能となります。<br>
-なお、uploadできるworkflowの容量は50MBまでとなります。
+なお、uploadできるworkflowの容量は50MBまでとなります。<br>
+<br>
+<br>
+メモ
+初期状態だとuwsgiのプロセス数=2となっています。
+プロセス数を変更したい場合には/app/config/uwsgi.iniを変更してください。
+
+
+
 
 ↓GitHub Codespacesでお試し<br>
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
