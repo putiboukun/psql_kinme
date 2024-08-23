@@ -32,8 +32,8 @@ Docker、およびDocker-composeを使用可能な状態で
 なお、uploadできるworkflowの容量は50MBまでとなります。<br>
 <br>
 <br>
-メモ
-初期状態だとuwsgiのプロセス数=2となっています。
+メモ<br>
+初期状態だとuwsgiのプロセス数=2となっています。<br>
 プロセス数を変更したい場合には/app/config/uwsgi.iniを変更してください。
 
 
