@@ -8,11 +8,11 @@ services:
       # 1_create_table.sqlをコンテナ内のdocker-entrypoint-initdb.dに置くため
       - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./database/data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES-DATABASE=postgres
-      - DATABASE_HOST=localhost
+    #environment:
+    #  - POSTGRES_USER=postgres
+    #  - POSTGRES_PASSWORD=postgres
+    #  - POSTGRES-DATABASE=postgres
+    #  - DATABASE_HOST=localhost
     #ports:
     #  - "5433:5432"
     restart: always #自動再起動をさせたくない場合にはコメントアウト
