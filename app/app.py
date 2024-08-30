@@ -19,12 +19,15 @@ from shutil import copyfileobj
 import markdown
 import json
 
+#ymlファイルで渡した環境変数を受け取る
+DATABASE_URL = os.getenv('PSQLURI')
+
 md = markdown.Markdown()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "kinme"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@flask_db:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
