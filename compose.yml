@@ -12,7 +12,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES-DATABASE=postgres
-      - DATABASE_HOST=localhost
+      - DATABASE_HOST=${DATABASE_HOST}
     #ports:
     #  - "5433:5432"
     restart: always #自動再起動をさせたくない場合にはコメントアウト
