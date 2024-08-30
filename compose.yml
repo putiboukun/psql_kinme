@@ -1,6 +1,6 @@
 services:
   database:
-    container_name: flask_db
+    container_name: psql_kinme_db
     build: ./database
     expose:
       - "5432" 
@@ -18,7 +18,7 @@ services:
     restart: always #自動再起動をさせたくない場合にはコメントアウト
 
   app:
-    container_name: flask_app
+    container_name: psql_kinme_app
     build: ./app
     expose:
       - "3031"
@@ -33,7 +33,7 @@ services:
    
 
   nginx:
-    container_name: flask_nginx
+    container_name: psql_kinme_nginx
     build: ./nginx
     volumes:
       - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
