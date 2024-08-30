@@ -9,9 +9,9 @@ services:
       - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./database/data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES-DATABASE=postgres
+      - POSTGRES_USER=${postgres}
+      - POSTGRES_PASSWORD=${postgres}
+      - POSTGRES-DATABASE=${postgres}
       - DATABASE_HOST=${DATABASE_HOST}
     #ports:
     #  - "5433:5432"
@@ -26,6 +26,8 @@ services:
       - ./app:/var/www/app
     depends_on:
       - database
+    environment:
+      - PSQLURI=${PSQLURI}
     command: uwsgi --ini /var/www/app/config/uwsgi.ini
     restart: always #自動再起動をさせたくない場合にはコメントアウト
    
