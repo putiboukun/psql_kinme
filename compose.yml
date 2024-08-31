@@ -31,7 +31,6 @@ services:
     command: uwsgi --ini /var/www/app/config/uwsgi.ini
     restart: always #自動再起動をさせたくない場合にはコメントアウト
    
-
   nginx:
     container_name: psql_kinme_nginx
     build: ./nginx
