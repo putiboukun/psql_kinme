@@ -40,9 +40,9 @@ services:
       - ./nginx/config/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - app
-    environment:
-      - APP_PORT=3031
-      - APP_SERVICE=psql_kinme_app
+   # environment:
+   #   - APP_PORT=3031
+   #   - APP_SERVICE=psql_kinme_app
     ports:
       - "$PORT_NUM:80"
     restart: always #自動再起動をさせたくない場合にはコメントアウト
