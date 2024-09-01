@@ -1,0 +1,10 @@
+{
+  "name": "psql_kinme",
+  "dockerComposeFile": "../compose.yml",
+  "service": "psql_kinme",
+  "workspaceFolder": "/workspace",
+  "extensions": [
+    "ms-azuretools.vscode-docker"
+  ],
+  "postStartCommand": "docker-compose up"
+}
