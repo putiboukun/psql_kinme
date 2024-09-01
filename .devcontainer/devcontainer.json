@@ -1,3 +1,6 @@
-{
-  "postCreateCommand": "docker compose up"
-}
+
+ {
+  "dockerComposeFile": ["../compose.yml"],
+  "postCreateCommand": "docker compose up",
+  }
+
