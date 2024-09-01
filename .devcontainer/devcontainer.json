@@ -2,7 +2,7 @@
   "name": "psql_kinme Project",
   "dockerComposeFile": "../compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "../",
   "extensions": [
       "ms-azuretools.vscode-docker"
   ],
