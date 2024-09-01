@@ -1,7 +1,5 @@
 flask
 uwsgi
-psycopg2
-psycopg2-binary
 flask-sqlalchemy
 flask-login
 flask-wtf
