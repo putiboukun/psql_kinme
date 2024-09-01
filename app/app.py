@@ -20,14 +20,16 @@ import markdown
 import json
 
 #ymlファイルで渡した環境変数を受け取る
-DATABASE_URL = os.getenv('PSQLURI')
+PSUSER=os.getenv('PSUSER')
+PSPASSWORD=os.getenv('PSPASSWORD')
+PSDATABASE=os.getenv('PSDATABASE')
 
 md = markdown.Markdown()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "kinme"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{PSUSER}:{PSPASSWORD}@psql_kinme_db:5432/{PSDATABASE}'
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
@@ -220,21 +222,6 @@ def delete_workflow(workflow_id):
         db.session.delete(wf)
         db.session.commit()
         return redirect("/")
-
-#@app.route('/register', methods=['GET', 'POST'])
-#def register():
-#    form = RegisterForm(request.form)
-#    if request.method == "GET":
-#        return render_template("register.html", form=form)
-#    elif request.method == "POST":
-#        if form.validate_on_submit():
-#            hashed_password = generate_password_hash(request.form.get('password'))
-#            user = User(name=request.form.get('username'), password=hashed_password)
-#            db.session.add(user)
-#            db.session.commit()
-#            return redirect("/")
-#    flash_errors(form)
-#    return render_template("register.html", form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
