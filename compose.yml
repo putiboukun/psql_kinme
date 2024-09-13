@@ -13,6 +13,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES-DATABASE=${POSTGRES_DATABASE}
       - DATABASE_HOST=${DATABASE_HOST}
+      - TZ=${TIMEZONE}
    # ports:
    #   - "5433:5432"
     restart: always #自動再起動をさせたくない場合にはコメントアウト
@@ -30,6 +31,7 @@ services:
       - PSUSER=${POSTGRES_USER}
       - PSPASSWORD=${POSTGRES_PASSWORD}
       - PSDATABASE=${POSTGRES_DATABASE}
+      - TZ=${TIMEZONE}
     command: uwsgi --ini /var/www/app/config/uwsgi.ini
     restart: always #自動再起動をさせたくない場合にはコメントアウト
     
