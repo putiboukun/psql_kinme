@@ -6,19 +6,13 @@
 psql_kinmeは kinme( https://github.com/Mishima-syk/kinme )のカスタマイズバージョンです。<br>
 以下の変更を加えています。
 
-1.Docker化<br>
+1.Docker対応<br>
 2.nginx - uwsgi - flask と連携させる仕様へ変更<br>
 3.kinmeで使用するDBをSQLiteからPostgreSQLへ変更<br>
 4.その他kinmeの細かい仕様を変更<br>
-　　→使用するパッケージの関数名変更対応<br>
-　　→画像の保存方法を変更<br>
-　　→ユーザーIDの重複登録を不可能に<br>
-　　→アイコン類変更<br>
-　　→文言少しだけ変更<br>
-    　　　　　　　　　　　等
 
 ソースをダウンロード、展開をしてそのディレクトリ内に移動後<br>
-Docker、およびDocker-composeを使用可能な状態で
+Docker composeを使用可能な状態で
 
     docker compose up
     
