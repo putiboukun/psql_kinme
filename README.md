@@ -38,6 +38,7 @@ databaseの情報、及びアクセスするポート番号は.envで規定さ�
 ↓GitHub Codespacesでお試し<br>
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=835495671&skip_quickstart=true)
 <br>
+立ち上がったら docker compose up -d　で体験できます!
 
 
 
