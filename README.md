@@ -26,7 +26,10 @@ Docker composeを使用可能な状態で
 なお、uploadできるworkflowの容量は50MBまでとなります。<br>
 <br>
 <br>
-メモ<br>
+メモ1<br>
+Workflowの説明文はMarkdown形式での記載となります。<br>
+<br>
+メモ2<br>
 databaseの情報、及びアクセスするポート番号は.envで規定されています。<br>
 構築する前に変更しておくことでその内容に合わせて構築します。<br>
 また、初期状態だとuwsgiのプロセス数=2となっています。<br>
