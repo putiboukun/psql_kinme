@@ -59,7 +59,7 @@ class Node(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
-    password = db.Column(db.String(255))
+    password = db.Column(db.String(30))
 
     def __init__(self, name, password):
         self.name = name
@@ -88,3 +88,4 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User:{}({})>'.format(self.name, self.id)
+

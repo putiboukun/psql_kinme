@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, redirect, render_template, flash, url_for, session, abort
 from werkzeug.utils import secure_filename
-from werkzeug.security import generate_password_hash, check_password_hash
 from model import db, Workflow, Tag, Node, User, workflows_nodes, workflows_tags
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -18,6 +17,9 @@ from io import BytesIO
 from shutil import copyfileobj
 import markdown
 import json
+import secrets
+import hashlib
+import hmac
 
 #ymlファイルで渡した環境変数を受け取る
 PSUSER=os.getenv('PSUSER')
@@ -59,6 +61,31 @@ class NewWorkflow(FlaskForm):
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
+def _derive_password_hash(password, salt):
+    digest = hashlib.pbkdf2_hmac(
+        'sha256',
+        password.encode('utf-8'),
+        salt.encode('utf-8'),
+        600000,
+        dklen=10,
+    )
+    return salt + digest.hex()
+
+
+def hash_password(password):
+    salt = secrets.token_hex(5)
+    return _derive_password_hash(password, salt)
+
+
+def verify_password(stored_value, password):
+    if stored_value and len(stored_value) == 30:
+        salt = stored_value[:10]
+        expected = _derive_password_hash(password, salt)
+        if hmac.compare_digest(expected, stored_value):
+            return True
+    return stored_value == password
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -241,7 +268,7 @@ def register():
                 flash('このユーザー名は既に使用されています。別のユーザー名を選択してください。')
                 return render_template("register.html", form=form)
             
-            hashed_password = generate_password_hash(form.password.data)
+            hashed_password = hash_password(form.password.data)
             user = User(name=form.username.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
@@ -256,7 +283,7 @@ def login():
     form = LoginForm(request.form)
     if form.validate_on_submit():
         user = User.query.filter_by(name=form.username.data).first()
-        if user and check_password_hash(user.password, form.password.data):
+        if user and verify_password(user.password, form.password.data):
             login_user(user)
             next_url = request.form.get('next')
             if next_url:
