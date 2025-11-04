@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, redirect, render_template, flash, url_for, session, abort
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from model import db, Workflow, Tag, Node, User, workflows_nodes, workflows_tags
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -17,7 +18,6 @@ from io import BytesIO
 from shutil import copyfileobj
 import markdown
 import json
-import secrets
 import hashlib
 import hmac
 
@@ -63,7 +63,7 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-def _derive_password_hash(password, salt):
+def _legacy_hash(password, salt):
     digest = hashlib.pbkdf2_hmac(
         'sha256',
         password.encode('utf-8'),
@@ -75,16 +75,22 @@ def _derive_password_hash(password, salt):
 
 
 def hash_password(password):
-    salt = secrets.token_hex(5)
-    return _derive_password_hash(password, salt)
+    return generate_password_hash(password)
 
 
 def verify_password(stored_value, password):
-    if stored_value and len(stored_value) == 30:
+    if not stored_value:
+        return False
+
+    if len(stored_value) == 30 and all(c in string.hexdigits for c in stored_value):
         salt = stored_value[:10]
-        expected = _derive_password_hash(password, salt)
+        expected = _legacy_hash(password, salt)
         if hmac.compare_digest(expected, stored_value):
             return True
+
+    if stored_value.startswith('pbkdf2:'):
+        return check_password_hash(stored_value, password)
+
     return stored_value == password
 
 @app.route('/', methods=["GET", "POST"])

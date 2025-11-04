@@ -1,6 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 import markdown
 from datetime import datetime
+import hashlib
+import hmac
+import string
+from werkzeug.security import check_password_hash
 
 db = SQLAlchemy()
 
@@ -59,7 +63,7 @@ class Node(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
-    password = db.Column(db.String(30))
+    password = db.Column(db.String(255))
 
     def __init__(self, name, password):
         self.name = name
@@ -81,10 +85,32 @@ class User(db.Model):
         return self.id
 
     @classmethod
-    def auth(cls, name, password):        
+    def auth(cls, name, password):
         u = User.query.filter_by(name=name).first()
-        if u.password == password:
+        if u and cls._password_matches(u.password, password):
             return u
+
+    @staticmethod
+    def _password_matches(stored_value, candidate):
+        if not stored_value:
+            return False
+
+        if len(stored_value) == 30 and all(c in string.hexdigits for c in stored_value):
+            salt = stored_value[:10]
+            digest = hashlib.pbkdf2_hmac(
+                'sha256',
+                candidate.encode('utf-8'),
+                salt.encode('utf-8'),
+                600000,
+                dklen=10,
+            ).hex()
+            if hmac.compare_digest(salt + digest, stored_value):
+                return True
+
+        if stored_value.startswith('pbkdf2:'):
+            return check_password_hash(stored_value, candidate)
+
+        return stored_value == candidate
 
     def __repr__(self):
         return '<User:{}({})>'.format(self.name, self.id)
