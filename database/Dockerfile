@@ -1,2 +1,2 @@
-#FROM postgres:16.4
-FROM postgres:latest
+ARG POSTGRES_MAJOR=18
+FROM postgres:${POSTGRES_MAJOR}

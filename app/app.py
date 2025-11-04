@@ -20,16 +20,38 @@ import markdown
 import json
 
 #ymlファイルで渡した環境変数を受け取る
-PSUSER=os.getenv('PSUSER')
-PSPASSWORD=os.getenv('PSPASSWORD')
-PSDATABASE=os.getenv('PSDATABASE')
+PSUSER = os.getenv('PSUSER')
+PSPASSWORD = os.getenv('PSPASSWORD')
+PSDATABASE = os.getenv('PSDATABASE')
+PSHOST = (
+    os.getenv('PSHOST')
+    or os.getenv('DATABASE_HOST')
+    or 'psql_kinme_db'
+)
+PSPORT = os.getenv('PSPORT', '5432')
+
+missing_env = [
+    key
+    for key, value in {
+        'PSUSER': PSUSER,
+        'PSPASSWORD': PSPASSWORD,
+        'PSDATABASE': PSDATABASE,
+    }.items()
+    if not value
+]
+if missing_env:
+    raise RuntimeError(
+        f"Missing required database configuration environment variables: {', '.join(missing_env)}"
+    )
 
 md = markdown.Markdown()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "kinme"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{PSUSER}:{PSPASSWORD}@psql_kinme_db:5432/{PSDATABASE}'
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    f'postgresql+psycopg2://{PSUSER}:{PSPASSWORD}@{PSHOST}:{PSPORT}/{PSDATABASE}'
+)
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
