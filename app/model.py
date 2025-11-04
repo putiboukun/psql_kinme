@@ -3,7 +3,6 @@ import markdown
 from datetime import datetime
 
 db = SQLAlchemy()
-md = markdown.Markdown()
 
 workflows_tags = db.Table('workflows_tags',
                     db.Column('workflow_id', db.Integer, db.ForeignKey('workflow.id')),
@@ -35,7 +34,7 @@ class Workflow(db.Model):
         self.created_time = datetime.now()
         self.user_id = k["user_id"]
         self.content = k["content"]
-        self.rendered_content = md.convert(k["content"])
+        self.rendered_content = markdown.markdown(k["content"])
 
     def __repr__(self):
         return '<({}) {}>'.format(self.name, self.created_time)
@@ -60,7 +59,7 @@ class Node(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
-    password = db.Column(db.String(30))
+    password = db.Column(db.String(255))
 
     def __init__(self, name, password):
         self.name = name

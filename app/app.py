@@ -24,8 +24,6 @@ PSUSER=os.getenv('PSUSER')
 PSPASSWORD=os.getenv('PSPASSWORD')
 PSDATABASE=os.getenv('PSDATABASE')
 
-md = markdown.Markdown()
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "kinme"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -107,37 +105,40 @@ def new_workflow():
     form = NewWorkflow()
     if form.validate_on_submit():
         tags = []
-        for tag in form.tag.data.split(" "):
-            tag_name = tag.strip()
+        for tag_name in filter(None, [t.strip() for t in form.tag.data.split()]):
             t = Tag.query.filter_by(name=tag_name).first()
             if t is None:
                 t = Tag(tag_name)
                 db.session.add(t)
                 db.session.commit()
-            tags.append(t)
+            if t not in tags:
+                tags.append(t)
         wf = Workflow(name=form.name.data, user_id=current_user.id, content=form.content.data)
         db.session.add(wf)
         db.session.commit()
         filename = secure_filename(form.knwf.data.filename)
         subdir = os.path.join("static", "workflows", str(wf.id))
         if not os.path.exists(subdir):
-            os.mkdir(subdir)
-        form.knwf.data.save(os.path.join(subdir, filename))
-        zfile = ZipFile(form.knwf.data)
+            os.makedirs(subdir)
+        workflow_path = os.path.join(subdir, filename)
+        form.knwf.data.save(workflow_path)
         node_list = []
-        for name in zfile.namelist():
-            if name.endswith("workflow.svg"):
-                svg_file_path = os.path.join(subdir, "workflow.svg")
-                with zfile.open(name) as source, open(svg_file_path, "wb") as target:
-                    copyfileobj(source, target)
-            tname = name.split("/")[1]
-            node_name = tname.split("(")[0]
-            if not node_name.startswith("workflow") and not node_name.startswith("."):
-                node_name = node_name.rstrip()
+        with ZipFile(workflow_path) as zfile:
+            for name in zfile.namelist():
+                if name.endswith("workflow.svg"):
+                    svg_file_path = os.path.join(subdir, "workflow.svg")
+                    with zfile.open(name) as source, open(svg_file_path, "wb") as target:
+                        copyfileobj(source, target)
+                parts = name.split("/")
+                if len(parts) < 2:
+                    continue
+                tname = parts[1]
+                node_name = tname.split("(")[0].rstrip()
+                if not node_name or node_name.startswith("workflow") or node_name.startswith("."):
+                    continue
                 node_list.append(node_name)
-        nl = list(set(node_list))
         nodes = []
-        for node_name in nl:
+        for node_name in sorted(set(node_list)):
             n = Node.query.filter_by(name=node_name).first()
             if n is None:
                 n = Node(node_name)
@@ -166,33 +167,37 @@ def edit_workflow(workflow_id):
     elif request.method == "POST":
         form = NewWorkflow()
         tags = []
-        for tag in form.tag.data.split(" "):
-            tag_name = tag.strip()
+        for tag_name in filter(None, [t.strip() for t in form.tag.data.split()]):
             t = Tag.query.filter_by(name=tag_name).first()
             if t is None:
                 t = Tag(tag_name)
                 db.session.add(t)
                 db.session.commit()
-            tags.append(t)
+            if t not in tags:
+                tags.append(t)
         subdir = os.path.join("static", "workflows", str(wf.id))
-        if form.knwf.data.filename:
+        os.makedirs(subdir, exist_ok=True)
+        if getattr(form.knwf.data, "filename", ""):
             filename = secure_filename(form.knwf.data.filename)
-            form.knwf.data.save(os.path.join(subdir, filename))
-            zfile = ZipFile(form.knwf.data)
+            workflow_path = os.path.join(subdir, filename)
+            form.knwf.data.save(workflow_path)
             node_list = []
-            for name in zfile.namelist():
-                if name.endswith("workflow.svg"):
-                    svg_file_path = os.path.join(subdir, "workflow.svg")
-                    with zfile.open(name) as source, open(svg_file_path, "wb") as target:
-                        copyfileobj(source, target)
-                tname = name.split("/")[1]
-                node_name = tname.split("(")[0]
-                if not node_name.startswith("workflow") and not node_name.startswith("."):
-                    node_name = node_name.rstrip()
+            with ZipFile(workflow_path) as zfile:
+                for name in zfile.namelist():
+                    if name.endswith("workflow.svg"):
+                        svg_file_path = os.path.join(subdir, "workflow.svg")
+                        with zfile.open(name) as source, open(svg_file_path, "wb") as target:
+                            copyfileobj(source, target)
+                    parts = name.split("/")
+                    if len(parts) < 2:
+                        continue
+                    tname = parts[1]
+                    node_name = tname.split("(")[0].rstrip()
+                    if not node_name or node_name.startswith("workflow") or node_name.startswith("."):
+                        continue
                     node_list.append(node_name)
-            nl = list(set(node_list))
             nodes = []
-            for node_name in nl:
+            for node_name in sorted(set(node_list)):
                 n = Node.query.filter_by(name=node_name).first()
                 if n is None:
                     n = Node(node_name)
@@ -204,7 +209,7 @@ def edit_workflow(workflow_id):
         wf.tags = tags
         wf.name = form.name.data
         wf.content = form.content.data
-        wf.rendered_content = md.convert(wf.content)
+        wf.rendered_content = markdown.markdown(wf.content)
         db.session.commit()
         return redirect(url_for("display_workflow", workflow_id=workflow_id))
 
