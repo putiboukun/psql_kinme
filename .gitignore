@@ -1,2 +1,6 @@
 *.pyc
 __pycache__
+*.duckdb
+*.duckdb.wal
+app/data/*
+!app/data/.gitkeep
