@@ -11,47 +11,28 @@ from wtforms import PasswordField, SelectField, DateField, BooleanField, TextAre
 from wtforms import StringField as TextField
 from sqlalchemy import func, text
 import os
-import string
-import random
 from zipfile import ZipFile
-from io import BytesIO
 from shutil import copyfileobj
 import markdown
-import json
 
-#ymlファイルで渡した環境変数を受け取る
-PSUSER = os.getenv('PSUSER')
-PSPASSWORD = os.getenv('PSPASSWORD')
-PSDATABASE = os.getenv('PSDATABASE')
-PSHOST = (
-    os.getenv('PSHOST')
-    or os.getenv('DATABASE_HOST')
-    or 'psql_kinme_db'
-)
-PSPORT = os.getenv('PSPORT', '5432')
-
-missing_env = [
-    key
-    for key, value in {
-        'PSUSER': PSUSER,
-        'PSPASSWORD': PSPASSWORD,
-        'PSDATABASE': PSDATABASE,
-    }.items()
-    if not value
-]
-if missing_env:
-    raise RuntimeError(
-        f"Missing required database configuration environment variables: {', '.join(missing_env)}"
-    )
+# ymlファイルで渡した環境変数を受け取る
+duckdb_path = os.getenv("DUCKDB_DATABASE")
+if duckdb_path:
+    duckdb_path = os.path.abspath(duckdb_path)
+    duckdb_dir = os.path.dirname(duckdb_path)
+    if duckdb_dir:
+        os.makedirs(duckdb_dir, exist_ok=True)
+else:
+    default_dir = os.path.join(os.path.dirname(__file__), "data")
+    os.makedirs(default_dir, exist_ok=True)
+    duckdb_path = os.path.abspath(os.path.join(default_dir, "kinme.duckdb"))
 
 md = markdown.Markdown()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "kinme"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    f'postgresql+psycopg2://{PSUSER}:{PSPASSWORD}@{PSHOST}:{PSPORT}/{PSDATABASE}'
-)
+app.config['SQLALCHEMY_DATABASE_URI'] = f'duckdb:///{duckdb_path}'
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
@@ -59,6 +40,9 @@ login_manager.init_app(app)
 
 db.init_app(app)
 db.app = app
+
+with app.app_context():
+    db.create_all()
 
 def flash_errors(form):
     for field, errors in form.errors.items():
