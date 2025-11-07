@@ -60,7 +60,7 @@ class Node(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
-    password = db.Column(db.String(30))
+    password = db.Column(db.String(255))
 
     def __init__(self, name, password):
         self.name = name
@@ -82,9 +82,9 @@ class User(db.Model):
         return self.id
 
     @classmethod
-    def auth(cls, name, password):        
+    def auth(cls, name, password):
         u = User.query.filter_by(name=name).first()
-        if u.password == password:
+        if u and u.password == password:
             return u
 
     def __repr__(self):
