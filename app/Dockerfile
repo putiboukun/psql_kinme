@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:3.12-slim
 
 # 作業ディレクトリを指定
 WORKDIR /var/www/app
