@@ -27,8 +27,6 @@ Docker composeを使用可能な状態で
 <br>
 PostgreSQLのメジャーバージョンは `.env` 内の `POSTGRES_MAJOR` で切り替えられます。<br>
 指定が無い場合はPostgreSQL 17系の公式イメージを利用します。<br>
-PostgreSQL 18より前のバージョンを利用する場合は、`docker-entrypoint-initdb.d` 以下のSQLで
-IDENTITYカラムを使用している点に注意してください。<br>
 <br>
 <br>
 メモ1<br>
