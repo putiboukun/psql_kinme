@@ -4,7 +4,7 @@ services:
     build:
       context: ./database
       args:
-        POSTGRES_MAJOR: ${POSTGRES_MAJOR:-18}
+        POSTGRES_MAJOR: ${POSTGRES_MAJOR:-17}
     expose:
       - "5432" 
     volumes:
